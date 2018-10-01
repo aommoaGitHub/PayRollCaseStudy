@@ -5,17 +5,14 @@ import app.database.PayrollDatabase;
 import app.transactions.AddEmployeeTransaction;
 import app.transactions.AddHourlyEmployeeTransaction;
 import app.transactions.ChangeMemberTransaction;
-import org.junit.Rule;
 import org.junit.Test;
 
-import static constant.TestConstants.FLOAT_ACCURACY;
 import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.assertThat;
 
 public class ChangeMemberTransactionTest {
 
-	@Rule
-	public PayrollDatabase db = PayrollDatabase.getInstance();
+	private PayrollDatabase db = PayrollDatabase.getInstance();
 
 	@Test
 	public void testChangeMemberTransaction( )
@@ -37,7 +34,7 @@ public class ChangeMemberTransactionTest {
         Affiliation affiliation = employee.getAffiliation();
         UnionAffiliation unionAffiliation = (UnionAffiliation) affiliation;
 		assertThat( unionAffiliation.getDues( ),
-				is( closeTo( 99.42, FLOAT_ACCURACY ) ) );
+				is(closeTo(99.42, 0.00001)));
 
 		Employee member = db.getUnionMember( memberId );
         assertThat( member, is( notNullValue( ) ) );

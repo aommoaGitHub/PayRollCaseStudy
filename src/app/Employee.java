@@ -58,8 +58,7 @@ public class Employee {
         this.paymentMethod = paymentMethod;
     }
 
-    public boolean isPayDate( Calendar payDate )
-    {
+    public boolean isPayDate(Calendar payDate) {
         return paymentSchedule.isPayDate( payDate );
     }
 

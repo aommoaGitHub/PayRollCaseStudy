@@ -25,6 +25,7 @@ public class AddTimeCardTransaction implements Transaction {
 		Employee employee = PayrollDatabase.getInstance().getEmployee( employeeId );
 		if ( employee != null ) {
 			PaymentClassification paymentClassification = employee.getPaymentClassification( );
+			System.out.println("Classification is: " + paymentClassification);
 			if ( paymentClassification instanceof HourlyClassification ) {
 				HourlyClassification classification = (HourlyClassification) paymentClassification;
 				classification.addTimeCard( new TimeCard( date, hours ) );

@@ -1,3 +1,4 @@
+import app.Employee;
 import app.affiliation.Affiliation;
 import app.affiliation.NoAffiliation;
 import app.classifications.PaymentClassification;
@@ -8,19 +9,16 @@ import app.methods.PaymentMethod;
 import app.schedules.MonthlyPaymentSchedule;
 import app.schedules.PaymentSchedule;
 import app.transactions.AddEmployeeTransaction;
-import app.Employee;
 import app.transactions.AddSalariedEmployeeTransaction;
 import junit.framework.TestCase;
-import org.junit.Rule;
 
-import static constant.TestConstants.FLOAT_ACCURACY;
-import static org.junit.Assert.*;
-import static org.hamcrest.Matchers.*;
+import static org.hamcrest.Matchers.closeTo;
+import static org.hamcrest.Matchers.instanceOf;
+import static org.junit.Assert.assertThat;
 
 public class AddEmployeeTransactionTest extends TestCase {
 
-    @Rule
-    public PayrollDatabase db = PayrollDatabase.getInstance();
+    private PayrollDatabase db = PayrollDatabase.getInstance();
 
     public void testAddSalariedEmployee( ) {
         int employeeId = 1;
@@ -35,7 +33,7 @@ public class AddEmployeeTransactionTest extends TestCase {
         assertThat(pc, instanceOf(SalariedClassification.class));
 
         SalariedClassification sc = (SalariedClassification) pc;
-        assertThat(sc.getSalary(), closeTo(1000.0, FLOAT_ACCURACY));
+        assertThat(sc.getSalary(), closeTo(1000.0, 0.00001));
 
         PaymentSchedule ps = employee.getPaymentSchedule();
         assertThat(ps, instanceOf(MonthlyPaymentSchedule.class));

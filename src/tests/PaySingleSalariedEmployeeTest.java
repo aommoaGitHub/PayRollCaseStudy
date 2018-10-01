@@ -1,22 +1,17 @@
+import app.classifications.PayCheck;
 import app.transactions.*;
-import app.database.PayrollDatabase;
-import org.junit.Rule;
 import org.junit.Test;
 
 import java.util.Calendar;
 import java.util.GregorianCalendar;
-import app.classifications.PayCheck;
 
 import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.assertThat;
 
 public class PaySingleSalariedEmployeeTest {
 
-	@Rule
-	public PayrollDatabase db = PayrollDatabase.getInstance();
-
-	@Test
-	public void paySingleSalariedEmployee() {
+    @Test
+    public void paySingleSalariedEmployee() {
         final int empId = 1;
         AddSalariedEmployeeTransaction t = new AddSalariedEmployeeTransaction(empId, "Bob", "Home",1000.00);
         t.execute();

@@ -3,16 +3,14 @@ import app.database.PayrollDatabase;
 import app.transactions.AddEmployeeTransaction;
 import app.transactions.AddHourlyEmployeeTransaction;
 import app.transactions.ChangeNameTransaction;
-import org.junit.Rule;
 import org.junit.Test;
 
-import static org.hamcrest.Matchers.*;
+import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
 
 public class ChangeNameTransactionTest {
 
-	@Rule
-	public PayrollDatabase db = PayrollDatabase.getInstance();
+	private PayrollDatabase db = PayrollDatabase.getInstance();
 
 	@Test
 	public void testChangeNameTransaction( ) {

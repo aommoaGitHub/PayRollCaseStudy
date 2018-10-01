@@ -1,9 +1,9 @@
 package app.transactions;
 
 import app.classifications.PaymentClassification;
+import app.classifications.SalariedClassification;
+import app.schedules.MonthlyPaymentSchedule;
 import app.schedules.PaymentSchedule;
-
-import java.util.Calendar;
 
 public class AddCommissionedEmployeeTransaction extends AddEmployeeTransaction {
 
@@ -18,5 +18,17 @@ public class AddCommissionedEmployeeTransaction extends AddEmployeeTransaction {
 		super( employeeId, employeeName, employeeAddress);
 		this.monthlySalary = monthlySalary;
 		this.commissionRate = commissionRate;
+	}
+
+	//refactor
+	@Override
+	public PaymentClassification getPaymentClassification() {
+		return new SalariedClassification(monthlySalary);
+	}
+
+	//refactor
+	@Override
+	public PaymentSchedule getPaymentSchedule() {
+		return new MonthlyPaymentSchedule();
 	}
 }

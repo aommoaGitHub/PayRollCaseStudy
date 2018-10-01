@@ -6,8 +6,7 @@ public class MonthlyPaymentSchedule implements PaymentSchedule {
 
 	public boolean isPayDate( Calendar payDate ) {
         Calendar nextDay = getNextDay(payDate);
-        boolean isLastDayOfMonth = nextDay.get(Calendar.MONTH) != payDate.get(Calendar.MONTH);
-        return isLastDayOfMonth;
+        return nextDay.get(Calendar.MONTH) != payDate.get(Calendar.MONTH);
 	}
 
 	public Calendar getPayPeriodStartDate(Calendar payDate ) {
@@ -15,10 +14,11 @@ public class MonthlyPaymentSchedule implements PaymentSchedule {
 		firstOfMonth.set( Calendar.DAY_OF_MONTH, 1 );
 		return firstOfMonth;
 	}
-	
+
     private Calendar getNextDay(Calendar date) {
         Calendar nextDay = (Calendar) date.clone();
         nextDay.add(Calendar.DAY_OF_MONTH, 1);
         return nextDay;
     }
+
 }
